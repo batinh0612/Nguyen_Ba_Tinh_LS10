@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.tab{
+			background: orange;
+			padding: 18px;
+			width: 3%;
+			height: 10px;
+			cursor: pointer;
+		}
+		.content{
+			width: 30%;
+			height: 80px;
+			background: #E3DBDB;
+			line-height: 60px;
+			display: none;
+		}
+		#container .active .content{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div class="section">
+			<div class="tab">
+				Tab 1
+			</div>
+			<div class="content">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit 1
+			</div>
+		</div>
+		<div class="section active">
+			<div class="tab">
+				Tab 2
+			</div>
+			<div class="content">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit 2
+			</div>
+		</div>
+		<div class="section">
+			<div class="tab">
+				Tab 3
+			</div>
+			<div class="content">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit 3
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var tabs = document.getElementsByClassName("tab");
+		for (var i = 0; i < tabs.length; i++) {
+			tabs[i].addEventListener("click", function(){
+				//ẩn nội dung của các tab khác = xóa lớp active của section
+				var active = document.getElementsByClassName("active")[0];
+				active.className = "section";
+				//hiển thị nội dung của tab được click
+				this.parentNode.className = "section active";
+			});
+		}
+	</script>
+</body>
+</html>

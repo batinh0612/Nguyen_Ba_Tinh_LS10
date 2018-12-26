@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="HW01.css">
+</head>
+<body>
+	<center id="slide">
+		<img src="img/44701842_2221040224637281_5594121922955706368_n.jpg" class="img-slide">
+		<img src="img/DA2v77jWsAIgKaV.jpg" class="img-slide">
+		<img src="img/DA2wAPRXcAAAtXN.jpg" class="img-slide">
+		<img src="img/DA2zo9BXcAA92Tt.jpg" class="img-slide">
+
+		<!-- button -->
+		<div class="btn">
+			<button class="button-element" onclick="elementSlide(0)"></button>
+			<button class="button-element" onclick="elementSlide(1)"></button>
+			<button class="button-element" onclick="elementSlide(2)"></button>
+			<button class="button-element" onclick="elementSlide(3)"></button>
+		</div>
+		<img src="http://icons.iconarchive.com/icons/iconsmind/outline/512/Arrow-Back-2-icon.png" id="prev">
+		<img src="http://www.iconarchive.com/download/i95457/iconsmind/outline/Arrow-Next.ico" id="next">
+	</center>
+	<script type="text/javascript" >
+		window.onload = function(){
+			document.getElementById('slide').addEventListener('mouseover', function() {
+				document.getElementById('prev').style.display="block";
+				document.getElementById('next').style.display="block";
+			});
+			document.getElementById('slide').addEventListener('mouseout', function() {
+				document.getElementById('prev').style.display="none";
+				document.getElementById('next').style.display="none";
+			});
+
+			var img 	= document.getElementsByClassName("img-slide");
+			var prev 		= document.getElementById('prev');
+			var next		= document.getElementById('next');
+			var numbSide = 0;
+
+			amimationSlide();
+
+				prev.addEventListener('click', function() {
+					numbSide--;
+					showSlide();
+				});
+
+				next.addEventListener('click', function() {
+					numbSide++;
+					showSlide();
+				});
+
+				function amimationSlide() {
+					for(var i = 0; i < img.length; i++) {
+						img[i].style.display="none";
+					}
+
+					numbSide++;
+					if(numbSide < 0) {
+						numbSide = img.length - 1;
+					}
+					if(numbSide > img.length) {
+						numbSide = 1;
+					}
+
+					img[numbSide-1].style.display="block";
+
+					setTimeout(amimationSlide, 5000);
+				}
+
+				function showSlide() {
+					for(var i = 0; i < img.length; i++) {
+						img[i].style.display="none";
+					}
+
+					if(numbSide < 1) {
+						numbSide = img.length;
+					}
+					if(numbSide > img.length) {
+						numbSide = 1;
+					}
+
+					img[numbSide-1].style.display="block";
+				}
+			}
+
+			function elementSlide(n) {
+				for(var i = 0; i < document.getElementsByClassName("img-slide").length; i++) {
+					document.getElementsByClassName("img-slide")[i].style.display="none";
+				}
+				document.getElementsByClassName("img-slide")[n].style.display="block";
+			}
+	</script>
+</body>
+</html>
